@@ -22,5 +22,12 @@ public class ClienteDaoImlp implements IClientDao{
     public List<Cliente> findAll() {
         return em.createQuery("from Cliente").getResultList();
     }
+
+    @Override
+    @Transactional
+    public void save(Cliente cliente) {
+        em.persist(cliente);
+        
+    }
     
 }

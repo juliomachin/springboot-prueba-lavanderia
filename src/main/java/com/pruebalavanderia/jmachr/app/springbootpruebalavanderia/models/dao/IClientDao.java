@@ -7,4 +7,8 @@ import com.pruebalavanderia.jmachr.app.springbootpruebalavanderia.models.enitity
 public interface IClientDao {
     
     public List<Cliente> findAll();
+
+    public void save(Cliente cliente);
+
+    
 }
