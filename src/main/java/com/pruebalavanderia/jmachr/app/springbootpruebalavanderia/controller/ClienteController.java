@@ -28,22 +28,22 @@ public class ClienteController {
         return "listar";
     }
 
-    @RequestMapping(value = "/form")
-    public String crear(Map<String, Object> model){
-        Cliente cliente = new Cliente();
-        model.put("cliente", cliente);
-        model.put("titulo", "Formulario de Cliente");
-        return "form";
-    }
+    // @RequestMapping(value = "/form")
+    // public String crear(Map<String, Object> model){
+    //     Cliente cliente = new Cliente();
+    //     model.put("cliente", cliente);
+    //     model.put("titulo", "Formulario de Cliente");
+    //     return "form";
+    // }
 
-    @RequestMapping(value = "/form", method = RequestMethod.POST)
-    public String guardar(@Valid Cliente cliente, BindingResult result, Model model){
-        if (result.hasErrors()) {
-            model.addAttribute("titulo",  "Formulario de Cliente");
-            return "form";
-        }
-        clientDao.save(cliente);
-        return "redirect:listar";
-    }
+    // @RequestMapping(value = "/form", method = RequestMethod.POST)
+    // public String guardar(@Valid Cliente cliente, BindingResult result, Model model){
+    //     if (result.hasErrors()) {
+    //         model.addAttribute("titulo",  "Formulario de Cliente");
+    //         return "form";
+    //     }
+    //     clientDao.save(cliente);
+    //     return "redirect:listar";
+    // }
     
 }
