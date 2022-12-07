@@ -36,7 +36,7 @@ public class Empresa implements Serializable{
     private String location;
     
     @NotEmpty
-    private String steet;
+    private String street;
 
     @NotEmpty
     @Size(min=4, max = 5)
@@ -71,11 +71,11 @@ public class Empresa implements Serializable{
     public void setLocation(String location) {
         this.location = location;
     }
-    public String getSteet() {
-        return steet;
+    public String getStreet() {
+        return street;
     }
-    public void setSteet(String steet) {
-        this.steet = steet;
+    public void setStreet(String street) {
+        this.street = street;
     }
     public String getZipCode() {
         return zipCode;
