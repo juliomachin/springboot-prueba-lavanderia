@@ -1,0 +1,58 @@
+<!-- Bootstrap core CSS-->
+<div th:fragment="links">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+</div>
+
+<div th:fragment="scripts">
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.2/dist/umd/popper.min.js" integrity="sha384-q9CRHqZndzlxGLOj+xrdLDJa9ittGte1NksRmgJKeCV9DrM7Kz868XYqsKWPpAmn" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</div>
+
+<div th:fragment="navbar">
+	<nav class="navbar sticky-top navbar-expand-lg navbar navbar-light justify-content-between"  style="background-color: #0B1E54">
+		<a class="navbar-brand" style="color:white" }>
+			<i class="fas fa-apple-alt"></i><span class="font-weight-bold ml-2">SOLTRA</span>
+		</a>
+		<ul class="navbar-nav ml-auto text-light">
+			<li class="nav-item active">
+				<a class="nav-link"  th:href="@{/listarCarros}">
+					<i class="fas fa-user-cog"></i>
+					<span class="ml-1"  style="color: orange">Carros</span>
+				</a>
+			</li>
+            <li class="nav-item active">
+			<!-- <li th:if="${user.isAdmin()}" class="nav-item active"> -->
+				<a class="nav-link" >
+					<i class="fas fa-users-cog"></i>
+					<span class="ml-1"  style="color: orange">Admin Zone</span>
+				</a>
+			</li>
+			<li class="nav-item active" style="color: orange">
+				<a class="nav-link"  th:href="@{/listarEmpresas}">
+					<i class="fas fa-shopping-cart"></i>
+					<span class="ml-1"  style="color: orange">Empresas</span>
+				</a>
+			</li>
+			<li class="nav-item active" >
+				<a class="nav-link" >
+					<i class="fas fa-sign-out-alt"></i>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</div>
+
+<div th:fragment="footer">
+	<footer class="sticky-footer">
+		<!-- Footer Links -->
+		<div class="container-fluid bg-light"></div>
+		<div class="container-fluid bg-light text-center">
+			<small> <i class="fa fa-copyright"></i> 2022 Lavanderia -
+				All rights reserved
+			</small>
+		</div>
+	</footer>
+</div>
