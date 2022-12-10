@@ -9,4 +9,6 @@ public interface IEmpresaDao {
     public List<Empresa> findAll();
 
     public void save(Empresa company);
+
+    public Empresa findOne(Long id);
 }

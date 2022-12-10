@@ -34,7 +34,8 @@ public class CarroController {
     public String crear(Map<String, Object> model){
         Carro carro = new Carro();
         model.put("carro", carro);
-        model.put("titulo", "Añadir un Carro");
+        model.put("titulo", "Añadir un Carro Prueba");
+        model.put("companies", empresaDao.findAll());
         
         return "formCarro";
     }

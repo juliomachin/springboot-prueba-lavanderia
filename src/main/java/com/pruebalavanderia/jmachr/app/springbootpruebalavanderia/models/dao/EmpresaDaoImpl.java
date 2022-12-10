@@ -32,5 +32,10 @@ public class EmpresaDaoImpl implements IEmpresaDao{
         eM.persist(company);
         
     }
+
+    @Override
+    public Empresa findOne(Long id) {
+        return eM.find(Empresa.class, id);
+    }
     
 }
