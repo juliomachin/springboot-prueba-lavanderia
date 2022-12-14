@@ -30,5 +30,10 @@ public class CarroDaoImpl implements ICarroDao{
         eM.persist(carro);
         
     }
+
+    @Override
+    public Carro findOne(Long id) {
+        return eM.find(Carro.class, id);
+    }
     
 }

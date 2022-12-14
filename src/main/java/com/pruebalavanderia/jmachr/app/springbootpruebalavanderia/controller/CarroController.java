@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -49,8 +50,6 @@ public class CarroController {
     @RequestMapping(value = "/formCarro", method = RequestMethod.POST)
     public String guardar(@Valid Carro carro, BindingResult result, Model model){
     
-        System.out.println("Nombre de la empresa: " + carro.getCompany());
-        System.out.println("FECHA: " + carro.getCreationDate());
         if (result.hasErrors()) {
             model.addAttribute("titulo",  "Añadir un Carro");
             model.addAttribute("empresas", empresaDao.findAll());
@@ -59,6 +58,23 @@ public class CarroController {
         carroDao.save(carro);
         return "redirect:listarCarros";
     }
-    
+
+    @GetMapping("/formCarro/{id}")
+    public String editarCarro(@PathVariable(value="id") Long id, Map<String, Object> model){
+
+        Carro carro = null;
+
+        if(id > 0){
+            carro = carroDao.findOne(id);
+        }else{
+            return "formCarro";
+        }
+
+        model.put("carro", carro);
+        model.put("titulo", "Editar carro");
+
+
+        return "formCarro";
+    } 
     
 }

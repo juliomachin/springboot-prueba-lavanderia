@@ -8,5 +8,7 @@ public interface ICarroDao {
     public List<Carro> findAll();
 
     public void save(Carro carro);
+
+    public Carro findOne(Long id);
     
 }
