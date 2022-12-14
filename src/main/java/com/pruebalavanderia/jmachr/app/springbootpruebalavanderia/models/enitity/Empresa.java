@@ -16,6 +16,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 @Entity
 @Table(name="empresas")
@@ -45,8 +47,27 @@ public class Empresa implements Serializable{
     
     @NotNull
     @Column(name = "fecha_creacion")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date creationDate;
+
+    
+    public Empresa() {
+    }
+
+    public Empresa(Long id, @NotEmpty @Size(min = 4, max = 200) String name, @NotEmpty @Email String email,
+        @NotEmpty String location, @NotEmpty String street, @NotEmpty @Size(min = 4, max = 5) String zipCode,
+        @NotNull Date creationDate) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.location = location;
+        this.street = street;
+        this.zipCode = zipCode;
+        this.creationDate = creationDate;
+    }
+
+
 
     public Long getId() {
         return id;

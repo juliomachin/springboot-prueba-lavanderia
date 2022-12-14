@@ -13,6 +13,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -28,19 +29,24 @@ public class Carro implements Serializable{
     private Long id;
 
     @NotEmpty
-    private Empresa company;
+    private String company;
 
-    @NotEmpty
+    @NotNull
     private Double weight;
 
     @NotNull
     @Column(name = "fecha_creacion")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date creationDate;
 
     //private User user;
     @NotEmpty
     private String user;
+
+
+    public Carro() {
+    }
 
     public Long getId() {
         return id;
@@ -50,11 +56,11 @@ public class Carro implements Serializable{
         this.id = id;
     }
 
-    public Empresa getCompany() {
+    public String getCompany() {
         return company;
     }
 
-    public void setCompany(Empresa company) {
+    public void setCompany(String company) {
         this.company = company;
     }
 

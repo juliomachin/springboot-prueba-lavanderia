@@ -1,4 +1,5 @@
 package com.pruebalavanderia.jmachr.app.springbootpruebalavanderia.controller;
+
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -7,12 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.pruebalavanderia.jmachr.app.springbootpruebalavanderia.models.dao.ICarroDao;
 import com.pruebalavanderia.jmachr.app.springbootpruebalavanderia.models.dao.IEmpresaDao;
 import com.pruebalavanderia.jmachr.app.springbootpruebalavanderia.models.enitity.Carro;
+
+
+
 
 @Controller
 public class CarroController {
@@ -33,18 +38,22 @@ public class CarroController {
     @RequestMapping(value = "/formCarro")
     public String crear(Map<String, Object> model){
         Carro carro = new Carro();
+        
         model.put("carro", carro);
         model.put("titulo", "Añadir un Carro Prueba");
-        model.put("companies", empresaDao.findAll());
+        model.put("empresas", empresaDao.findAll());
         
         return "formCarro";
     }
 
     @RequestMapping(value = "/formCarro", method = RequestMethod.POST)
     public String guardar(@Valid Carro carro, BindingResult result, Model model){
+    
+        System.out.println("Nombre de la empresa: " + carro.getCompany());
+        System.out.println("FECHA: " + carro.getCreationDate());
         if (result.hasErrors()) {
             model.addAttribute("titulo",  "Añadir un Carro");
-            model.addAttribute("companies", empresaDao.findAll());
+            model.addAttribute("empresas", empresaDao.findAll());
             return "formCarro";
         }
         carroDao.save(carro);

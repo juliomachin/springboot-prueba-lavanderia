@@ -10,44 +10,29 @@
     <th:block th:include="includes/fragments :: navbar"></th:block>
     <div class="container">
         <h1 th:text="${titulo}"></h1>
-        <div th:object="${carro}" th:remove="tag">
-			<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
-				<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
-			</ul>
-		</div>
         <form th:action="@{/formCarro}" th:object="${carro}" method="post">
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label ">Empresa</label> 
                 <div class="col-sm-6">
-                    <div class="dropdown" >
-                        <a class="btn btn-light dropdown-toggle" role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                          Empresa
-                        </a>
-                        <ul class="dropdown-menu" th:each="company: ${companies}" aria-labelledby="dropdownMenuButton1">
-                            <!-- <li><a class="dropdown-item" th:text="${company.name}" ></a></li> -->
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                        </ul>
-                      </div>
-                    <div class="dropdown-menu" th:each="company: ${companies}">
-                        <a class="dropdown-item" th:text="${company.name}" ></a>
-                        <input type="text" th:field="*{company}" class="form-control">
-                    </div>
-                    <label class="form-text text-danger" th:if="${#fields.hasErrors('company')}" th:errors="*{company}"></label>
-                    
+                    <select class="form-control selectpicker"  th:field="*{company}" >
+                        <option value="">--SELECIONAR-- </option>
+                        <option th:each="empresa: ${empresas}" th:value="${empresa.name}"  th:text="${empresa.name}">Empesa
+                        </option>
+                    </select>                    
                 </div>
-            </div>
+            </div>  
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label ">Peso</label> 
                 <div class="col-sm-6">
-                    <input type="text" th:field="*{weight}" class="form-control">
+                    <input type="number" step="0.01" th:field="*{weight}" class="form-control"/>
                     <label class="form-text text-danger" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></label>
                 </div>
             </div>       
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label ">Fecha</label> 
+                <label class="col-sm-2 col-form-label ">Fecha de Creación</label> 
                 <div class="col-sm-6">
-                    <input type="text" th:field="*{creationDate}" class="form-control">
-                    <label class="form-text text-danger" th:if="${#fields.hasErrors('creationDate')}" th:errors="*{creationDate}"></label>
+                    <input type="date" th:field="*{creationDate}" class="form-control" th:errorclass="'form-control alert-danger'">
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('creationDate')}" th:errors="*{creationDate}"></small>
                 </div>
             </div>
             <div class="form-group row">
