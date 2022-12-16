@@ -54,13 +54,22 @@ public class EmpresaController {
         if(id > 0){
             company = empresaDao.findOne(id);
         }else{
-            return "form";
+            return "redirect:/form";
         }
 
         model.put("company", company);
         model.put("titulo", "Editar cliente");
         return "form";
 
+    }
+
+    @RequestMapping(value = "/deleteCompany/{id}")
+    public String delete(@PathVariable(value="id") Long id){
+        if(id > 0){
+            empresaDao.delete(id);
+        }
+
+        return "redirect:/listarEmpresas";
     }
     
 }

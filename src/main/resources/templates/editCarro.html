@@ -14,11 +14,8 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label ">Empresa</label> 
                 <div class="col-sm-6">
-                    <select class="form-control selectpicker"  th:field="*{company}" >
-                        <option value="${carro.company}"> </option>
-                        <option th:each="empresa: ${empresas}" th:value="${empresa.name}"  th:text="${empresa.name}">Empesa
-                        </option>
-                    </select>                    
+                    <input type="text" th:field="*{company}" class="form-control" disabled/>
+                    <label class="form-text text-danger" th:if="${#fields.hasErrors('company')}" th:errors="*{company}"></label>         
                 </div>
             </div>  
             <div class="form-group row">
@@ -45,7 +42,7 @@
 
             <div class="form-group "> 
                 <div class="col-sm-6">
-                    <input type="submit" value="Crear Carro" class="btn btn-primary"/>
+                    <input type="submit" value="Editar Carro" class="btn btn-warning"/>
                 </div>
             </div>     
             <input type="hidden" th:field="*{id}" />

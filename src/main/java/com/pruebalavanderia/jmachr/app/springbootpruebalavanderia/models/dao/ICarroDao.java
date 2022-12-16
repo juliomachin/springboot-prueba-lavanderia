@@ -10,5 +10,7 @@ public interface ICarroDao {
     public void save(Carro carro);
 
     public Carro findOne(Long id);
+
+    public void delete(Long id);
     
 }

@@ -59,22 +59,34 @@ public class CarroController {
         return "redirect:listarCarros";
     }
 
-    @GetMapping("/formCarro/{id}")
+    @GetMapping("/editCarro/{id}")
     public String editarCarro(@PathVariable(value="id") Long id, Map<String, Object> model){
 
         Carro carro = null;
+        
 
         if(id > 0){
             carro = carroDao.findOne(id);
         }else{
-            return "formCarro";
+            return "redirect:/listarCarro";
         }
 
         model.put("carro", carro);
         model.put("titulo", "Editar carro");
+        model.put("empresas", empresaDao.findAll());
 
 
-        return "formCarro";
+        return "editCarro";
     } 
+
+    @RequestMapping(value = "/deleteCarro/{id}")
+    public String delete(@PathVariable(value="id") Long id){
+        
+        if(id > 0){
+            carroDao.delete(id);
+        }
+
+        return "redirect:/listarCarros";
+    }
     
 }

@@ -27,6 +27,7 @@
                     <th>C.P.</th>
                     <th>Fecha de Creación</th>
                     <th>Editar</th>
+                    <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,8 +40,13 @@
                     <td th:text="${company.zipCode}"></td>
                     <td th:text="${company.creationDate}"></td>
                     <td>
-                        <a class="btn btn-primary-xs" th:href="@{/form/} + ${company.id}" >
+                        <a class="btn btn-warning" th:href="@{/form/} + ${company.id}" >
                             <i class="bi bi-pencil-square"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" th:href="@{/deleteCompany/} + ${company.id}" onclick="return confirm('Estás seguro que quieres eliminar ?' );" >
+                            X
                         </a>
                     </td>
                 </tr>

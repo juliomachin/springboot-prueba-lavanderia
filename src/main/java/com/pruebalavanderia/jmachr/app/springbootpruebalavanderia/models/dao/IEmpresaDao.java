@@ -11,4 +11,6 @@ public interface IEmpresaDao {
     public void save(Empresa company);
 
     public Empresa findOne(Long id);
+
+    public void delete(Long id);
 }

@@ -27,13 +27,26 @@ public class CarroDaoImpl implements ICarroDao{
     @Override
     @Transactional
     public void save(Carro carro) {
-        eM.persist(carro);
+        if(carro.getId() != null && carro.getId() > 0 ){
+            eM.merge(carro);
+        }else{
+             eM.persist(carro);
+        }
         
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Carro findOne(Long id) {
         return eM.find(Carro.class, id);
+    }
+
+
+    @Override
+    @Transactional
+    public void delete(Long id) {
+        eM.remove(findOne(id));
+        
     }
     
 }

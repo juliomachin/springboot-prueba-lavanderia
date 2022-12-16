@@ -16,10 +16,6 @@
               <a  class="btn btn-success" type="submit" th:href="@{/formCarro}">
                   <i class="bi bi-cart"></i>
               </a>
-            
-            <a class="btn btn-danger" >
-                <i class="bi bi-cart"></i>
-            </a>
           </div>
             
 
@@ -33,6 +29,7 @@
                     <th>Fecha de Creación</th>
                     <th>Trabajador</th>
                     <th>Editar</th>
+                    <th>Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,8 +40,13 @@
                     <td th:text="${carro.creationDate}"></td>
                     <td th:text="${carro.user}"></td>
                     <td>
-                        <a class="btn btn-primary-xs" th:href="@{/formCarro/} + ${carro.id}" >
+                        <a class="btn btn-warning" th:href="@{/editCarro/} + ${carro.id}" >
                             <i class="bi bi-pencil-square"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" th:href="@{/deleteCarro/} + ${carro.id}"  onclick="return confirm('Estás seguro que quieres eliminar ?' );">
+                            <i class="bi bi-cart"></i>
                         </a>
                     </td>
                 </tr>

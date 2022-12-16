@@ -29,13 +29,25 @@ public class EmpresaDaoImpl implements IEmpresaDao{
     @Override
     @Transactional
     public void save(Empresa company) {
-        eM.persist(company);
-        
+        if(company.getId() != null && company.getId() > 0 ){
+            eM.merge(company);
+        }else{
+             eM.persist(company);
+        }
+    }
+
+
+    @Override
+    @Transactional(readOnly = true)
+    public Empresa findOne(Long id) {
+        return eM.find(Empresa.class, id);
     }
 
     @Override
-    public Empresa findOne(Long id) {
-        return eM.find(Empresa.class, id);
+    @Transactional
+    public void delete(Long id) {
+        eM.remove(findOne(id));
+        
     }
     
 }
