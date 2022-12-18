@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.pruebalavanderia.jmachr.app.springbootpruebalavanderia.models.dao.ICarroDao;
-import com.pruebalavanderia.jmachr.app.springbootpruebalavanderia.models.dao.IEmpresaDao;
+
 import com.pruebalavanderia.jmachr.app.springbootpruebalavanderia.models.enitity.Carro;
+import com.pruebalavanderia.jmachr.app.springbootpruebalavanderia.models.service.ICarroService;
+import com.pruebalavanderia.jmachr.app.springbootpruebalavanderia.models.service.IEmpresaService;
 
 
 
@@ -24,15 +25,15 @@ import com.pruebalavanderia.jmachr.app.springbootpruebalavanderia.models.enitity
 public class CarroController {
 
     @Autowired
-    private ICarroDao carroDao;
+    private ICarroService carroService;
 
     @Autowired
-    private IEmpresaDao empresaDao;
+    private IEmpresaService empresaService;
 
     @RequestMapping(value="/listarCarros", method = RequestMethod.GET)
     public String listar(Model model){
         model.addAttribute("titulo", "Listado de carros");
-        model.addAttribute("carros", carroDao.findAll());
+        model.addAttribute("carros", carroService.findAll());
         return "listarCarros";
     }
 
@@ -42,7 +43,7 @@ public class CarroController {
         
         model.put("carro", carro);
         model.put("titulo", "Añadir un Carro Prueba");
-        model.put("empresas", empresaDao.findAll());
+        model.put("empresas", empresaService.findAll());
         
         return "formCarro";
     }
@@ -52,10 +53,10 @@ public class CarroController {
     
         if (result.hasErrors()) {
             model.addAttribute("titulo",  "Añadir un Carro");
-            model.addAttribute("empresas", empresaDao.findAll());
+            model.addAttribute("empresas", empresaService.findAll());
             return "formCarro";
         }
-        carroDao.save(carro);
+        carroService.save(carro);
         return "redirect:listarCarros";
     }
 
@@ -66,14 +67,14 @@ public class CarroController {
         
 
         if(id > 0){
-            carro = carroDao.findOne(id);
+            carro = carroService.findOne(id);
         }else{
             return "redirect:/listarCarro";
         }
 
         model.put("carro", carro);
         model.put("titulo", "Editar carro");
-        model.put("empresas", empresaDao.findAll());
+        model.put("empresas", empresaService.findAll());
 
 
         return "editCarro";
@@ -83,7 +84,7 @@ public class CarroController {
     public String delete(@PathVariable(value="id") Long id){
         
         if(id > 0){
-            carroDao.delete(id);
+            carroService.delete(id);
         }
 
         return "redirect:/listarCarros";

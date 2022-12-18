@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.pruebalavanderia.jmachr.app.springbootpruebalavanderia.models.dao.IEmpresaDao;
 import com.pruebalavanderia.jmachr.app.springbootpruebalavanderia.models.enitity.Empresa;
+import com.pruebalavanderia.jmachr.app.springbootpruebalavanderia.models.service.IEmpresaService;
 
 @Controller
 public class EmpresaController {
 
     @Autowired
-    private IEmpresaDao empresaDao;
+    private IEmpresaService empresaService;
 
     @RequestMapping(value="/listarEmpresas", method = RequestMethod.GET)
     public String listar(Model model){
         model.addAttribute("titulo", "Listado de Empresas");
-        model.addAttribute("companies", empresaDao.findAll());
+        model.addAttribute("companies", empresaService.findAll());
         return "listarEmpresas";
     }
 
@@ -42,7 +42,7 @@ public class EmpresaController {
             model.addAttribute("titulo",  "Formulario de Empresa");
             return "form";
         }
-        empresaDao.save(company);
+        empresaService.save(company);
         return "redirect:listarEmpresas";
     }
 
@@ -52,7 +52,7 @@ public class EmpresaController {
         Empresa company = null;
 
         if(id > 0){
-            company = empresaDao.findOne(id);
+            company = empresaService.findOne(id);
         }else{
             return "redirect:/form";
         }
@@ -66,7 +66,7 @@ public class EmpresaController {
     @RequestMapping(value = "/deleteCompany/{id}")
     public String delete(@PathVariable(value="id") Long id){
         if(id > 0){
-            empresaDao.delete(id);
+            empresaService.delete(id);
         }
 
         return "redirect:/listarEmpresas";

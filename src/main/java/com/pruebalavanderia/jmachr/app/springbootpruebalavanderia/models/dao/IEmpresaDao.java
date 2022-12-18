@@ -1,16 +1,10 @@
 package com.pruebalavanderia.jmachr.app.springbootpruebalavanderia.models.dao;
 
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
 import com.pruebalavanderia.jmachr.app.springbootpruebalavanderia.models.enitity.Empresa;
 
-public interface IEmpresaDao {
+public interface IEmpresaDao extends CrudRepository <Empresa, Long> {
     
-    public List<Empresa> findAll();
-
-    public void save(Empresa company);
-
-    public Empresa findOne(Long id);
-
-    public void delete(Long id);
+    
 }
