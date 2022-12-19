@@ -1,14 +1,10 @@
 package com.pruebalavanderia.jmachr.app.springbootpruebalavanderia.models.dao;
 
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
 import com.pruebalavanderia.jmachr.app.springbootpruebalavanderia.models.enitity.Cliente;
 
-public interface IClientDao {
-    
-    public List<Cliente> findAll();
+public interface IClientDao extends CrudRepository<Cliente, Long>{
 
-    public void save(Cliente cliente);
 
-    
 }

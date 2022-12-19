@@ -13,81 +13,79 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 @Entity
-@Table(name="clientes")
-public class Cliente implements Serializable{
+@Table(name = "clientes")
+public class Cliente implements Serializable {
 
-    private static final long serialVersionUID = 1;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@NotEmpty
+	private String nombre;
+	
+	@NotEmpty
+	private String apellido;
+	
+	@NotEmpty
+	@Email
+	private String email;
 
-    @NotEmpty
-    @Size(min=4, max = 200)
-    private String nombre;
+	@NotNull
+	@Column(name = "create_at")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date createAt;
 
-    @NotEmpty
-    private String apellido;
+	public Long getId() {
+		return id;
+	}
 
-    @NotEmpty
-    @Email
-    private String email;
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    @NotNull
-    @Column(name = "fecha_creacion")
-    @Temporal(TemporalType.DATE)
-    private Date createAt;
+	public String getNombre() {
+		return nombre;
+	}
 
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public String getApellido() {
+		return apellido;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getApellido() {
-        return apellido;
-    }
+	public Date getCreateAt() {
+		return createAt;
+	}
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
+	public void setCreateAt(Date createAt) {
+		this.createAt = createAt;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Date getCreateAt() {
-        return createAt;
-    }
-
-    public void setCreateAt(Date createAt) {
-        this.createAt = createAt;
-    }
-
-   
-
-
-
-    
+	private static final long serialVersionUID = 1L;
 
 }
+
