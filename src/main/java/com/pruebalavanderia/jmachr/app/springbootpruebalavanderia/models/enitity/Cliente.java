@@ -34,7 +34,7 @@ public class Cliente implements Serializable {
 	private String nombre;
 	
 	@NotEmpty
-	private String apellido;
+	private String direccion;
 	
 	@NotEmpty
 	@Email
@@ -45,6 +45,8 @@ public class Cliente implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createAt;
+
+	private String foto;
 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Carro> carros;
@@ -70,12 +72,12 @@ public class Cliente implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public String getApellido() {
-		return apellido;
+	public String getDireccion() {
+		return direccion;
 	}
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 
 	public String getEmail() {
@@ -111,6 +113,14 @@ public class Cliente implements Serializable {
     public void addCarros(Carro carro){
         carros.add(carro);
     }
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
 
 }
 
