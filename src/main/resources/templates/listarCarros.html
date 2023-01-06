@@ -12,32 +12,30 @@
 			<div class="card-body">
 
 				<h4 class="card-title">
-					<a th:href="@{/form}" class="btn btn-primary">crear cliente</a>
+					<a th:href="@{/addCarro}" class="btn btn-primary">crear carro</a>
 				</h4>
 
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>id</th>
-							<th>nombre</th>
-							<th>direccion</th>
-							<th>email</th>
-							<th>fecha</th>
+							<th>Id</th>
+							<th>Cliente</th>
+							<th>Peso</th>
+							<th>Fecha</th>
 							<th>editar</th>
 							<th>eliminar</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="cliente: ${clientes}">
-							<td><a class="btn btn-primary btn-xs" th:href="@{/ver/} + ${cliente.id}" th:text="${cliente.id}"></a></td>
-							<td th:text="${cliente.nombre}"></td>
-							<td th:text="${cliente.direccion}"></td>
-							<td th:text="${cliente.email}"></td>
-							<td th:text="${cliente.createAt}"></td>
+						<tr th:each="carro: ${carros}">
+							<td th:text="${carro.id}"></td>
+							<td th:text="${carro.cliente.nombre}"></td>
+							<td th:text="${carro.peso}"></td>
+							<td th:text="${carro.createAt}"></td>
 							<td><a class="btn btn-warning btn-sm"
-								th:href="@{/form/} + ${cliente.id}" th:text="'editar'"></a></td>
+								th:href="@{/addCarro/} + ${carro.id}" th:text="'editar'"></a></td>
 							<td><a class="btn btn-danger btn-sm"
-								th:href="@{/eliminar/} + ${cliente.id}" th:text="'eliminar'"
+								th:href="@{/eliminarCarro/} + ${carro.id}" th:text="'eliminar'"
 								onclick="return confirm('Est�s seguro que quieres eliminar?');"></a></td>
 						</tr>
 					</tbody>
