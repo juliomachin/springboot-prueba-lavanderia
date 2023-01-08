@@ -14,6 +14,9 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity()
 @Table(name="carros")
@@ -28,8 +31,10 @@ public class Carro implements Serializable{
 
     private Double peso;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "fecha_Creacion")
+    @NotNull
+	@Column(name = "create_at")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createAt;
 
     @PrePersist
